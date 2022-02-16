@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{01c91944-6ca2-4950-8bcc-cbe9cf0410b9}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{01041bd1-7eb0-448c-841d-7bcf0a5ca047}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{31f0ed1f-4f94-475a-8cd4-74e204bd953b}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MainWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Toon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UrlStatic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winpenguins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winpenguinsDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenCapture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="winpenguins.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Toon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UrlStatic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winpenguins.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winpenguinsDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenCapture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CHANGES.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\large_penguins\Ballooner_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Ballooner_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Bomber_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Bomber_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Climber_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Climber_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\ClimberSkateboarder_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\ClimberSkateboarder_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Exit_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Exit_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Explosion_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Explosion_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Faller_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Faller_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Floater_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Floater_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Reader_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Reader_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\SantaClimber_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\SantaClimber_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\SantaWalker_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\SantaWalker_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Skateboarder_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Skateboarder_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Splat_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Splat_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\SuperPenguin_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\SuperPenguin_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Tumbler_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Tumbler_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Walker_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\Walker_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Ballooner_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Ballooner_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Bomber_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Bomber_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Climber_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Climber_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\ClimberSkateboarder_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\ClimberSkateboarder_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Exit_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Exit_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Explosion_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Explosion_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\explosionOriginal.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Faller_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Faller_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Floater_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Floater_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Reader_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Reader_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\SantaClimber_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\SantaClimber_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\SantaWalker_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\SantaWalker_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Skateboarder_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Skateboarder_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Splat_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Splat_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\SuperPenguin_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\SuperPenguin_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Tumbler_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Tumbler_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Walker_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\Walker_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\icons\winpenguins.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\SantaWalkerUpsideDown_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\SantaWalkerUpsideDown_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\SantaClimberDown_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\SantaClimberDown_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\ClimberSkateboarderDown_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\ClimberSkateboarderDown_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\ClimberSkateboarderDown_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\ClimberSkateboarderDown_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\ClimberDown_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\ClimberDown_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\ClimberDown_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\ClimberDown_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\WalkerUpsideDown_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\WalkerUpsideDown_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\WalkerUpsideDown_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\WalkerUpsideDown_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\SkateboarderUpsideDown_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\small_penguins\SkateboarderUpsideDown_SmallMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\SkateboarderUpsideDown_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\SkateboarderUpsideDown_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\SantaWalkerUpsideDown_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\SantaWalkerUpsideDown_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\SantaClimberDown_Large.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\large_penguins\SantaClimberDown_LargeMask.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="sounds\boom.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\pop.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="COPYING.txt" />
+  </ItemGroup>
+</Project>

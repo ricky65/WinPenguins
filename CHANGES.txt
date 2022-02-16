@@ -1,0 +1,117 @@
+1.1 (February 16, 2022) - Riccardo Marcangelo
+  - Fixed location of Explosion sprite when on edge of screen.
+  - Improved error handling.
+  - Small bug fixes.
+
+1.0 (April 28, 2021) - Riccardo Marcangelo
+  - WinPenguins now works on Windows 10! (Microsoft introduced Desktop Window Manager (DWM) in Windows 8 which broke the app)
+  - Added new Large penguins (Bitmaps from Xpenguins). Toggle between Small and Large penguins in Settings.
+  - Added new Super Penguin (Bitmap from Xpenguins). 
+  - Penguins can now walk upside down and skateboard upside down! (New sprites)
+  - Penguins can now climb down and skateboard down. (New sprites)
+  - Created new bitmap sprites for Large Santa Walker penguin and Large Santa Climber penguin.
+  - Added new Exit animation for Walker penguins (Bitmap from Xpenguins).
+  - Created new bitmap masks for Skateboarder, Skateboarder Climber, Splat, and Exit sprites so they now work with Alpha blending.
+  - Penguins now fall in through the top of the screen rather than materializing out of thin air!
+  - Tumbling penguins can now transform into Skateboarder penguins on impact.
+  - Balloons are now only popped for Ballooner penguins when mouse is over balloons area of sprite.
+  - Smoother transitions between different penguin types.
+  - Added DPI scaling support.  
+  - Fixed a bug where sometimes the splat animation could be offset to the left or right instead of being central.
+  - Fixed a bug where splat penguins would transform back to life on app shutdown.
+  - Fixed a bug where penguins would sometimes splat when transitioning from a Climber to a Walker. 
+  - Fixed a bug where Tumbling penguins would only turn left on landing.
+  - Fixed a bug where Reading penguins would read in mid-air in situations where there was no longer a window to sit on.
+  - Fixed a bug where penguins could transform into Santa penguins even with Santa penguins disabled.
+  - Fixed a bug where Climber and Skateboard Climber penguins would always tumble when hitting a top right corner.
+  - Fixed a bug where a falling penguin would tumble instead of climbing when hitting side of window.
+  - Fixed a bug where the app would sometimes not shutdown if a penguin was in the exploding state.
+  - Fixed a bug with balloons not popping on mouse over.
+  - Fixed a bug where screenshot would not be saved if the BMP bitmap file format was chosen.
+  - Fixed an issue with sound clipping when multiple sounds are played at once.
+  - Instead of drawing on the desktop window, penguins are now drawn on a new transparent overlay window.
+  - Migrated from ANSI to Unicode.
+  - Migrated to superior Pseudo-random Number Generator library.
+  - Added new MSIX Windows app package installer.
+  - Removed winmon.dll dependency.
+  - Removed old unused code.
+  - Improved performance.
+  - Fixed lots of resource and memory leaks.
+
+0.76 (March 28, 2011) - Riccardo Marcangelo
+  - Fixed a bug where skateboarding penguins would sometimes explode unintentionally when transforming into walkers or floaters.
+  - Climbing skateboarding penguins now correctly transform into normal skateboarders where appropriate
+  - Ballooners no longer leave pixel remnants after they've been popped
+  - Modified the source code so a 64-bit version can be compiled.
+   
+0.75 (March 16, 2011) - Riccardo Marcangelo
+  - Penguins now splatter if they tumble from a sufficient height (Bitmap from Xpenguins)
+  - Skateboarders now glide down off windows
+  - Climbing skateboarders now skateboard across windows where appropriate
+  - Added ability to change direction of skateboarders using left-right or A-D keys
+  - Users can now pop the bubbles of ballooners
+  - Added popping sound for above
+
+0.7 (March 13, 2011) - Riccardo Marcangelo
+  - Penguins now stop to read a book every so often. (Bitmap from Xpenguins)
+  - Penguins now sometimes lower down using balloons (Bitmap from Xpenguins)
+  - Added skateboarding penguins (Bitmap from Xpenguins)
+  - Added climbing skateboarding penguins (Bitmap from Xpenguins)
+  - Added the ability to save screenshots in PNG and JPG formats
+  - Remnants of old bitmaps should now be properly cleaned up
+
+0.51 (March 4, 2011) - Riccardo Marcangelo
+  - Added function which explodes a penguin if cursor is positioned over it
+  - The save screenshot dialog no longer appears in the screenshot
+  - All penguins are now santa penguins during December
+  - Fixed some bugs, including potential buffer overflows
+
+0.5 (April 20, 2001)
+  - Alpha blending for Windows 98 (and possibly Window ME but I don't have a
+    Windows ME system to test with)
+  - Screen capture functionality added to system tray.  (thanks to Tom Lee)
+  - Added explosion noise when penguins hit the ground (thanks to Tom Lee)
+  - Santa penguins added (thanks to Tom Lee)
+  - Fixed crash that occured when you exit Winpenguins with the Options
+    dialog or About box open.
+  - Added a border around the GPL text in the About box
+  - Made the URL in the About box work when clicked on
+  
+0.4   April 4, 2001
+  - Added alpha blending (Windows 2000 only)
+  - cleaned up the options dialog slightly
+  - left clicking on the system tray icon brings up the options dialog
+  - moved the Winpenguins homepage to SourceForge
+  - stop the user from opening multiple option windows at the same time
+  - changed the scale on the Speed option slightly (the slowest speed
+    was too slow to be usable)
+
+
+0.3   May 18, 2000
+  - After discussing with the FSF, updated license to include a special 
+    exception for the Visual C++ runtime library
+  - Options dialog spelling mistake fixed
+  - Prevent multiple instances running at the same time
+  - Minor change to the winmon.dll resource extraction code, the actual name
+    "winmon.dll" is used instead of creating a random temporary filename 
+
+
+0.2   May 12, 2000
+  - fixed jittering "floaters"
+  - fixed taskbar resize/auto-hide/screen_resolution bug
+  - some general code cleanup
+  - winmon.dll is no longer required.  If it cannot be found winpenguins.exe
+    will extract a copy of winmon.dll from its resources into a temporary file 
+    and use that instead
+  - systray icon is removed when the program terminates
+
+0.1b  May 11, 2000
+  - minor fix so that msimg32.dll is only loaded if it will 
+    actually be used.
+
+0.1a  May 10, 2000
+  - small change to the desktop repainting code 
+
+0.1   May 9, 2000
+  - initial revision
+
