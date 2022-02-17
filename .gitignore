@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Windows Application Packaging Project
+installer/
+
+# Windows Application Packaging Project SLN
+winpenguinsWithInstaller.sln
