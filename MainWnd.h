@@ -80,7 +80,7 @@ static HWINEVENTHOOK ShowHideHook;
 static HWINEVENTHOOK CloakedUncloakedHook;
 static bool windowChanged = true;
 
-void HandleWindowEvents(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG idObject, LONG idChild, DWORD dwEventThread, DWORD dwmsEventTime);
+void CALLBACK HandleWindowEvents(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG idObject, LONG idChild, DWORD dwEventThread, DWORD dwmsEventTime);
 void InitializeHooks();
 void ShutdownHooks();
 
