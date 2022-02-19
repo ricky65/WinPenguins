@@ -4,7 +4,7 @@
   - Small bug fixes.
 
 1.0 (April 28, 2021) - Riccardo Marcangelo
-  - WinPenguins now works on Windows 10! (Microsoft introduced Desktop Window Manager (DWM) in Windows 8 which broke the app)
+  - WinPenguins now works on Windows 10! (In Windows 8 and above, Desktop Window Manager (DWM) is always enabled which broke older versions of WinPenguins)
   - Added new Large penguins (Bitmaps from Xpenguins). Toggle between Small and Large penguins in Settings.
   - Added new Super Penguin (Bitmap from Xpenguins). 
   - Penguins can now walk upside down and skateboard upside down! (New sprites)
@@ -25,13 +25,13 @@
   - Fixed a bug where penguins could transform into Santa penguins even with Santa penguins disabled.
   - Fixed a bug where Climber and Skateboard Climber penguins would always tumble when hitting a top right corner.
   - Fixed a bug where a falling penguin would tumble instead of climbing when hitting side of window.
-  - Fixed a bug where the app would sometimes not shutdown if a penguin was in the exploding state.
+  - Fixed a bug where WinPenguins would sometimes not shutdown if a penguin was in the exploding state.
   - Fixed a bug with balloons not popping on mouse over.
   - Fixed a bug where screenshot would not be saved if the BMP bitmap file format was chosen.
   - Fixed an issue with sound clipping when multiple sounds are played at once.
   - Instead of drawing on the desktop window, penguins are now drawn on a new transparent overlay window.
   - Migrated from ANSI to Unicode.
-  - Migrated to superior Pseudo-random Number Generator library.
+  - Migrated to superior Pseudorandom Number Generator library.
   - Added new MSIX Windows app package installer.
   - Removed winmon.dll dependency.
   - Removed old unused code.
