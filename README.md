@@ -12,7 +12,9 @@ Screenshot of WinPenguins 1.0 running on Windows 10
 
 ## Downloads
 
-Download and run WinPenguins from the Microsoft Store [here](https://www.microsoft.com/store/apps/9P5Z59BMZZ5G) 
+Download and run WinPenguins from the Microsoft Store [here](https://www.microsoft.com/store/apps/9P5Z59BMZZ5G).
+
+Alternatively, download a standalone WinPenguins executable for your platform [here](https://github.com/ricky65/WinPenguins/releases).
 
 ## Usage
 
@@ -93,4 +95,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## License
 
-WinPenguins is released under the GNU General Public License. See the file [COPYING.txt](./COPYING.txt) for details
+WinPenguins is released under the GNU General Public License Version 2. See the file [COPYING.txt](./COPYING.txt) for details.
