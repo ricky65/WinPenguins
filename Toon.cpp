@@ -89,7 +89,7 @@ ToonData penguin_data[penguin_BITMAP_COUNT] = {
 
 CToon::CToon(int x, int y, int u, int v, int bmpIndex, int directionIndex, bool isLarge) :
 	m_x {x}, m_y {y}, m_u {u}, m_v {v}, m_prefd{-1}, m_tumbleStartY{0}, m_bmpIndex{bmpIndex}, m_frameIndex{0}, m_directionIndex{directionIndex},
-	m_active{true}, m_startingUp{true}, m_isLarge{isLarge}, m_tstSubType{ToonSubType::TST_UNSPECIFIED}
+	m_active{true}, m_startingUp{true}, m_isLarge{isLarge}, m_respawn{true}, m_tstSubType{ToonSubType::TST_UNSPECIFIED}
 {
 }
 
@@ -114,10 +114,7 @@ void CToon::DeleteAni()
 		m_x -= 3;
 		m_y -= 3;		
 	}
-	else if (m_bmpIndex != penguin_BOMBER && m_bmpIndex != penguin_BOMBERLARGE 
-			&& m_bmpIndex != penguin_EXPLOSION && m_bmpIndex != penguin_EXPLOSIONLARGE
-			&& m_bmpIndex != penguin_SPLAT && m_bmpIndex != penguin_SPLATLARGE
-			&& m_bmpIndex != penguin_EXIT && m_bmpIndex != penguin_EXITLARGE)
+	else if (!IsDeleteAni())
 	{
 		m_directionIndex = 0;
 		m_frameIndex = 0;
@@ -136,8 +133,8 @@ void CToon::DeleteAni()
 
 void CToon::ExplodeAni(bool soundOn)
 {
-	if (penguin_EXPLOSION == m_bmpIndex || penguin_EXPLOSIONLARGE == m_bmpIndex
-		|| penguin_SPLAT == m_bmpIndex || penguin_SPLATLARGE == m_bmpIndex) {
+
+	if (IsEndOfCycleBitmap() || IsDeleteAni()) {
 		return;
 	}
 
@@ -164,7 +161,8 @@ void CToon::ExplodeAni(bool soundOn)
 
 void CToon::SplatAni(bool soundOn)
 {
-	if (penguin_SPLAT == m_bmpIndex || penguin_SPLATLARGE == m_bmpIndex) {
+
+	if (IsSplat()) {
 		return;
 	}
 
@@ -194,15 +192,35 @@ bool CToon::IsActive()
 	return m_active;
 }
 
+bool CToon::IsDeleteAni()
+{
+	return (m_bmpIndex == penguin_BOMBERLARGE || m_bmpIndex == penguin_BOMBER || m_bmpIndex == penguin_EXITLARGE || m_bmpIndex == penguin_EXIT);
+}
+
 bool CToon::IsExploding()
 {
 	return (m_bmpIndex == penguin_EXPLOSIONLARGE || m_bmpIndex == penguin_EXPLOSION);
 }
 
+bool CToon::IsSplat()
+{
+	return (m_bmpIndex == penguin_SPLATLARGE || m_bmpIndex == penguin_SPLAT);
+}
+
 //true if penguin is at end of cycle (exploded or splattered)
 bool CToon::IsEndOfCycleBitmap()
 {
-	return (m_bmpIndex == penguin_EXPLOSIONLARGE || m_bmpIndex == penguin_EXPLOSION ||  m_bmpIndex == penguin_SPLATLARGE || m_bmpIndex == penguin_SPLAT);
+	return (IsExploding() || IsSplat());
+}
+
+bool CToon::IsRespawnable()
+{
+	return m_respawn;
+}
+
+void CToon::SetRespawnable(bool respawn)
+{
+	m_respawn = respawn;
 }
 
 void CToon::GetRect(RECT &rt)

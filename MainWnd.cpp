@@ -1289,8 +1289,9 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 
 			//Rick 2021: Reset penguins that are at end of cycle (exploded or splattered)
 			if (!toon.IsActive() &&
-				toon.IsEndOfCycleBitmap()
-				&& m_numpenguins > 0) {
+				toon.IsRespawnable() && 
+				toon.IsEndOfCycleBitmap() && 
+				m_numpenguins > 0) {
 				toon = CToon::CreateStarterPenguin(m_largePenguinsEnabled);
 			}
 		}
@@ -1301,7 +1302,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 
 		//Rick 2021: Number of penguins reduced, erase them from back of vector
 		//m_toonVec.size() always at least 1 unless app is shutting down
-		while (!m_toonVec.back().m_active) {
+		while (!m_toonVec.back().IsActive() && !m_toonVec.back().IsRespawnable()) { 
 			m_toonVec.pop_back(); 
 
 			//Rick 2021: 0 penguins left. Close app
@@ -1430,7 +1431,12 @@ void CMainWnd::SetToonCountTo(int count)
 	//display penguin vanish animation on app close
 	if (count < m_toonVec.size()) {
 		for (int i = count; i < m_toonVec.size(); ++i) {
-			m_toonVec[i].DeleteAni();
+
+			if (!m_toonVec[i].IsEndOfCycleBitmap()) {
+				m_toonVec[i].DeleteAni();
+			}
+
+			m_toonVec[i].SetRespawnable(false);
 		}
 	}	
 

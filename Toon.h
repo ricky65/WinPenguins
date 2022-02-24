@@ -85,7 +85,9 @@ public:
 
 	bool m_active;
 	bool m_startingUp; //Rick 2021: true unless penguin has fully entered screen
-	bool m_isLarge;//Rick 2021:
+	bool m_isLarge;//Rick 2021
+
+	bool m_respawn;//Rick 2022
 
 	ToonSubType m_tstSubType;	
 
@@ -124,9 +126,14 @@ public:
 	
 	void PopSound();//Rick
 
-	bool IsActive();//Rick 2022
+	bool IsActive();//Rick 2022	
+	bool IsDeleteAni();//Rick 2022
 	bool IsExploding();//Rick 2022
+	bool IsSplat();//Rick 2022
 	bool IsEndOfCycleBitmap();//Rick 2022	
+
+	bool IsRespawnable();//Rick 2022
+	void SetRespawnable(bool respawn);//Rick 2022
 
 	void GetRect(RECT &rt);
 	void GetRect(RECT &rt, int newx, int newy);
