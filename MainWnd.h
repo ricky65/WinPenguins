@@ -71,7 +71,7 @@ void ToConsole(const std::wstring_view formatStr, const Args&... args)
 	NewLineToConsole();
 }
 
-void LoadConsole();
+bool LoadConsole();
 #endif // WP_CONSOLE
 
 // Hook events

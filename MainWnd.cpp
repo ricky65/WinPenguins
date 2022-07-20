@@ -64,23 +64,25 @@ void ToConsole(const std::wstring& str)
 	NewLineToConsole();
 }
 
-void LoadConsole()
+bool LoadConsole()
 {	
 	const BOOL ACRes = AllocConsole();
 	if (!ACRes) {
 		const std::wstring ACErrorStr = std::format(L"AllocConsole Error: {}", GetLastError());
 		MessageBoxW(nullptr, ACErrorStr.c_str(), L"Internal Error", MB_ICONERROR);
-		return;
+		return false;
 	}
 
 	Console = GetStdHandle(STD_OUTPUT_HANDLE);
 	if (Console == INVALID_HANDLE_VALUE) {
 		const std::wstring GetStdHandleErrorStr = std::format(L"GetStdHandle Error: {}", GetLastError());
 		MessageBoxW(nullptr, GetStdHandleErrorStr.c_str(), L"Internal Error", MB_ICONERROR);
-		return;
+		return false;
 	}
 
 	ToConsole(L"WinPenguins Debug Console");
+
+	return true;
 }
 #endif // WP_CONSOLE
 
@@ -337,7 +339,10 @@ CMainWnd::CMainWnd()
 {
 
 #ifdef WP_CONSOLE
-	LoadConsole();
+	const bool loadCon = LoadConsole();
+	if (!loadCon) {
+		MessageBoxW(L"Error: Unable to load WinPenguins Console", L"Internal Error", MB_ICONERROR);
+	}
 #endif	
 	
     // Check if another instance of WinPenguins is already running
