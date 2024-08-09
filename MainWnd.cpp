@@ -267,6 +267,8 @@ void CMainWnd::FindVisibleWindows()
 {	
 	static const wchar_t taskbarClassName[] = L"Shell_TrayWnd";//Taskbar
 	static const wchar_t programManagerTitle[] = L"Program Manager";
+
+	static const wchar_t NVIDIAGeForceOverlayTitle[] = L"NVIDIA GeForce Overlay";
 	
 	HWND prevWindow = nullptr;
 	for (;;) 
@@ -295,6 +297,17 @@ void CMainWnd::FindVisibleWindows()
 		if (!_wcsicmp(windowTitleBuf, programManagerTitle)) {
 			continue;
 		}
+
+		// Rick 2024: Ignore NVIDIA GeForce Overlay
+		const bool GeForceOverlayFound = _wcsicmp(windowTitleBuf, NVIDIAGeForceOverlayTitle) == 0;
+
+		if (GeForceOverlayFound) {
+#ifdef WP_CONSOLE
+			ToConsole(L"NVIDIA GeForce Overlay found: (HWND: {})", static_cast<const void*>(currentWindow));
+#endif	// WP_CONSOLE
+ 			continue;
+		}
+	
 		
 		wchar_t classNameBuf[32];
 		GetClassName(currentWindow, classNameBuf, static_cast<int>(std::size(classNameBuf)));
@@ -310,7 +323,7 @@ void CMainWnd::FindVisibleWindows()
 		const int winTextLength = ::GetWindowTextLength(currentWindow);
 
 		//Rick 2021: Skip windows that are not visible and do not have title bar text (exclude the taskbar)
-		if (!(IsWindowVisibleOnScreen(currentWindow) && !::IsIconic(currentWindow) && winTextLength != 0) && !taskbarFound) {			
+		if (!(IsWindowVisibleOnScreen(currentWindow) && !::IsIconic(currentWindow) && winTextLength != 0) && !taskbarFound) {
 //#ifdef WP_CONSOLE
 //			ToConsole(L"Discarded window (HWND: {}| WindowTitle: {}| WindowClass: {})", static_cast<const void*>(currentWindow), windowTitleBuf, classNameBuf);
 //#endif // WP_CONSOLE
