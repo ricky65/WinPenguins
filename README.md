@@ -24,7 +24,12 @@ Alternatively, download a standalone WinPenguins executable for your platform [h
 * WinPenguins creates a penguin icon in the Taskbar Notification Area (located at the right end of the Windows Taskbar).  
    - Left click to access Settings.
    - To shutdown WinPenguins, right click to open the menu and click Exit.
-   - To take a screenshot, right click to open the menu and click Screenshot... 
+   - To take a screenshot, right click to open the menu and click Screenshot...
+ 
+## Changes in WinPenguins 1.2
+  - Default ignore NVIDIA GeForce Overlay so penguins spawn and are visible on machines with NVIDIA cards.
+  - Fixed bug where reducing number of penguins didn't work correctly when at least one penguin was in an exploding or splat state.
+  - Improved error handling.
 
 ## Changes in WinPenguins 1.1
   - Fixed location of Explosion sprite when on edge of screen.
