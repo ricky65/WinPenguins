@@ -2,7 +2,7 @@
  *  Def.h
  *
  *  Copyright (C) 2000  Michael Vines
- *  Copyright (c) 2011-2022 Riccardo Marcangelo
+ *  Copyright (c) 2011-2025 Riccardo Marcangelo
  *
  *  This file contains code from Xpenguins 1.1
  *		Copyright (C) 1999,2000  Robin Hogan

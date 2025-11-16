@@ -68,7 +68,7 @@ BEGIN
     ICON            IDR_ICON,IDC_STATIC,10,10,21,20
     LTEXT           "WinPenguins Version 1.2",IDC_STATIC,45,9,90,8,SS_NOPREFIX
     LTEXT           "Copyright (c) 2000,2001  Michael Vines",IDC_STATIC,45,19,124,8
-    LTEXT           "Copyright (c) 2011-2022 Riccardo Marcangelo",IDC_STATIC,45,29,145,8
+    LTEXT           "Copyright (c) 2011-2025 Riccardo Marcangelo",IDC_STATIC,45,29,145,8
     LTEXT           "https://www.microsoft.com/store/apps/9P5Z59BMZZ5G",IDC_STATIC_URL,45,39,145,8
     DEFPUSHBUTTON   "OK", IDOK, 240, 68, 50, 14, WS_GROUP 
     LTEXT           "WinPenguins is based on XPenguins", IDC_STATIC, 87, 58, 127, 8
@@ -100,7 +100,7 @@ BEGIN
             VALUE "FileDescription", "WinPenguins"
             VALUE "FileVersion", "0.1.2.0"
             VALUE "InternalName", "WinPenguins"
-            VALUE "LegalCopyright", "Copyright (C) 2000  Michael Vines Copyright (C) 2011-2022 Riccardo Marcangelo"
+            VALUE "LegalCopyright", "Copyright (C) 2000  Michael Vines Copyright (C) 2011-2025 Riccardo Marcangelo"
             VALUE "OriginalFilename", "winpenguins.exe"
             VALUE "ProductName", "WinPenguins"
             VALUE "ProductVersion", "0.1.2.0"
