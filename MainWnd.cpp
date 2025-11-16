@@ -364,7 +364,7 @@ CMainWnd::CMainWnd()
 		const std::wstring mutexStr = std::format(L"Unable to create WinPenguins Instance Mutex. CreateMutex error: {}", GetLastError());
 #ifdef WP_CONSOLE		
 		ToConsole(mutexStr);
-#endif WP_CONSOLE //WP_CONSOLE
+#endif //WP_CONSOLE
 		MessageBox(mutexStr.c_str(), L"Internal Error", MB_ICONERROR);
 		ExitProcess(1);
 	}
@@ -388,7 +388,7 @@ CMainWnd::CMainWnd()
 		const wchar_t desktopHWNDStr[] = L"GetDesktopWindow Error";
 #ifdef WP_CONSOLE
 		ToConsole(desktopHWNDStr);
-#endif WP_CONSOLE //WP_CONSOLE
+#endif //WP_CONSOLE
 		MessageBoxW(desktopHWNDStr, L"Internal Error", MB_ICONERROR);
 		ExitProcess(1);		
 	}
