@@ -406,19 +406,19 @@ int CToon::AdvanceToon(/*bool force,*/)
 			status = TOON_PARTIALMOVE;
 			//} 
 		}
-	}
-
-	RECT rt;
-	int move_ahead = 1;
+	}	
 
 	//Rick: Get rect for new location of penguin
+	RECT rt;
 	GetRect(rt, newx + CMainWnd::winPenguinsWindowRect.left, newy + CMainWnd::winPenguinsWindowRect.top);
+
+	bool move_ahead = true;
 
 	//Rick 2021: Check if penguin is in window region
 	if (CMainWnd::combinedWindowRegion.GetSafeHandle() && CMainWnd::combinedWindowRegion.RectInRegion(&rt) /*&& !force*/) {
 		int tryx, tryy, step = 1;
 
-		move_ahead = 0;
+		move_ahead = false;
 		status = TOON_BLOCKED;
 
 		if (abs(m_v) < abs(m_u)) {
@@ -433,7 +433,7 @@ int CToon::AdvanceToon(/*bool force,*/)
 					newx = tryx;
 					newy = tryy;
 					status = TOON_PARTIALMOVE;
-					move_ahead = 1;
+					move_ahead = true;
 					break;
 				}
 			}
@@ -450,7 +450,7 @@ int CToon::AdvanceToon(/*bool force,*/)
 						newx = tryx;
 						newy = tryy;
 						status = TOON_PARTIALMOVE;
-						move_ahead = 1;
+						move_ahead = true;
 						break;
 					}
 				}
