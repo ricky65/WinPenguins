@@ -1,3 +1,8 @@
+1.2 (November 16, 2025) - Riccardo Marcangelo
+  - Default ignore NVIDIA GeForce Overlay so penguins spawn and are visible on machines with NVIDIA cards. 
+  - Fixed bug where reducing number of penguins didn't work correctly when at least one penguin was in an exploding or splat state.
+  - Improved error handling.
+
 1.1 (February 16, 2022) - Riccardo Marcangelo
   - Fixed location of Explosion sprite when on edge of screen.
   - Improved error handling.
