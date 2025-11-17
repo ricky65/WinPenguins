@@ -590,7 +590,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 				toon.ExplodeAni(m_soundEnabled);
 			}			
 			
-			const int status = toon.AdvanceToon();
+			const ToonStatus toon_status = toon.AdvanceToon();
 
 			//Rick 2021: Check if the newly spawned penguin has fully entered from top of screen
 			toon.CheckFullyEnteredScreen();
@@ -618,7 +618,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 
 					toon.SetVelocity(0, -4);
 				}
-				else if (status != TOON_OK)
+				else if (toon_status != ToonStatus::TOON_OK)
 				{
 					if (toon.IsBlocked(TOON_DOWN))
 					{
@@ -652,7 +652,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 				break;
 			case penguin_TUMBLER:
 			case penguin_TUMBLERLARGE:
-				if (status != TOON_OK) {
+				if (toon_status != ToonStatus::TOON_OK) {
 					//Rick: splat if splatdist is more than tumble distance
 					if (toon.m_y - toon.m_tumbleStartY > m_splatDist) {
 						toon.SplatAni(m_soundEnabled);
@@ -709,7 +709,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					toon.SetVelocity(0, 6);
 					toon.m_tumbleStartY = toon.m_y;
 				}
-				else if (status != TOON_OK) {
+				else if (toon_status != ToonStatus::TOON_OK) {
 					/* Blocked!  We can turn around, fly or climb */
 
 					//Rick 2021 : Don't want to transform into climber, floater, or super if starting and above top of screen
@@ -918,7 +918,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 				break;
 			case penguin_FLOATER:
 			case penguin_FLOATERLARGE:
-				if (status != TOON_OK) {
+				if (toon_status != ToonStatus::TOON_OK) {
 					if (toon.IsBlocked(TOON_UP)) {
 						toon.SetType(penguin_FALLER, penguin_FOREWARD);
 						toon.SetVelocity(((toon.m_u > 0) * 2 - 1), 3);
@@ -976,7 +976,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					toon.m_tumbleStartY = toon.m_y;//prevents splat
 					break;
 				}
-				if (status != TOON_OK) {
+				if (toon_status != ToonStatus::TOON_OK) {
 					if (toon.IsBlocked(TOON_DOWN)) {
 						//Rick: compensate for height of balllooner bmp being taller							
 						if (!m_largePenguinsEnabled) {
@@ -1266,7 +1266,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 				break;
 			case penguin_SUPER:
 			case penguin_SUPERLARGE:
-				if (status != TOON_OK) {
+				if (toon_status != ToonStatus::TOON_OK) {
 					if (toon.IsBlocked(TOON_UP)) {
 						toon.SetType(penguin_FALLER, penguin_FOREWARD);
 						toon.SetVelocity(((toon.m_u > 0) * 2 - 1), 3);

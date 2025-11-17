@@ -37,9 +37,11 @@
 //
 
 // return values from AdvanceToon
-#define TOON_OK 0
-#define TOON_PARTIALMOVE 1
-#define TOON_BLOCKED -1
+enum class ToonStatus {
+	TOON_OK,
+	TOON_PARTIALMOVE,
+	TOON_BLOCKED
+};
 
 #define TOON_LEFT 0
 #define TOON_RIGHT 1
@@ -110,7 +112,7 @@ public:
 	bool IsMouseOver();//Rick
 	bool IsStartingUp(); //Rick 2022
 	bool CheckFullyEnteredScreen();//Rick 2021
-	int AdvanceToon(/*bool force,*/);
+	ToonStatus AdvanceToon(/*bool force,*/);
 	void SetVelocity(int u, int v);	
 	void SetPosition(int x, int y);
 	void SetType(int type);

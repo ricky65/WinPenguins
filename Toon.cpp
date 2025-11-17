@@ -376,9 +376,9 @@ void CToon::MakeLarge()
 	m_isLarge = true;
 }
 
-int CToon::AdvanceToon(/*bool force,*/)
+ToonStatus CToon::AdvanceToon(/*bool force,*/)
 {
-	int status = TOON_OK;
+	ToonStatus toon_status = ToonStatus::TOON_OK;
 
 	int newx = m_x + m_u;
 	int newy = m_y + m_v;	 
@@ -387,23 +387,23 @@ int CToon::AdvanceToon(/*bool force,*/)
 		//Rick: constrain penguins on x-axis
 		if (newx < 0) {
 			newx = 0;
-			status = TOON_PARTIALMOVE;
+			toon_status = ToonStatus::TOON_PARTIALMOVE;
 		}
 		else if (newx + penguin_data[m_bmpIndex].width > CMainWnd::winPenguinsWindowRect.right) {
 			newx = CMainWnd::winPenguinsWindowRect.right - penguin_data[m_bmpIndex].width;
-			status = TOON_PARTIALMOVE;
+			toon_status = ToonStatus::TOON_PARTIALMOVE;
 		}
 
 		//Rick: constrain penguins on y-axis
 		//Rick 2021: Added !IsStartingUp so we can have penguins enter from top of screen when spawned	
 		if (!IsStartingUp() && newy < 0) {
 			newy = 0;
-			status = TOON_PARTIALMOVE;
+			toon_status = ToonStatus::TOON_PARTIALMOVE;
 		}
 		else if (newy + penguin_data[m_bmpIndex].height > CMainWnd::winPenguinsWindowRect.bottom) {
 			//if (!force) {
 			newy = CMainWnd::winPenguinsWindowRect.bottom - penguin_data[m_bmpIndex].height;
-			status = TOON_PARTIALMOVE;
+			toon_status = ToonStatus::TOON_PARTIALMOVE;
 			//} 
 		}
 	}	
@@ -419,7 +419,7 @@ int CToon::AdvanceToon(/*bool force,*/)
 		int tryx, tryy, step = 1;
 
 		move_ahead = false;
-		status = TOON_BLOCKED;
+		toon_status = ToonStatus::TOON_BLOCKED;
 
 		if (abs(m_v) < abs(m_u)) {
 			if (newx > m_x)
@@ -432,7 +432,7 @@ int CToon::AdvanceToon(/*bool force,*/)
 				if (!CMainWnd::combinedWindowRegion.RectInRegion(&rt)) {
 					newx = tryx;
 					newy = tryy;
-					status = TOON_PARTIALMOVE;
+					toon_status = ToonStatus::TOON_PARTIALMOVE;
 					move_ahead = true;
 					break;
 				}
@@ -449,7 +449,7 @@ int CToon::AdvanceToon(/*bool force,*/)
 					if (!CMainWnd::combinedWindowRegion.RectInRegion(&rt)) {
 						newx = tryx;
 						newy = tryy;
-						status = TOON_PARTIALMOVE;
+						toon_status = ToonStatus::TOON_PARTIALMOVE;
 						move_ahead = true;
 						break;
 					}
@@ -465,7 +465,7 @@ int CToon::AdvanceToon(/*bool force,*/)
 
 	AdvanceFrame();
 
-	return status;
+	return toon_status;
 }
 
 //Rick: checks if cursor position is inside the rectangle of a penguin
