@@ -43,12 +43,13 @@ enum class ToonStatus {
 	TOON_BLOCKED
 };
 
-#define TOON_LEFT 0
-#define TOON_RIGHT 1
-#define TOON_UP 2
-#define TOON_DOWN 3
-#define TOON_HERE -1
-
+enum class ToonDirection {
+	TOON_LEFT = 0,
+	TOON_RIGHT = 1,
+	TOON_UP = 2,
+	TOON_DOWN = 3,
+	TOON_HERE = -1
+};
 
 enum class ToonSubType
 {
@@ -108,7 +109,7 @@ public:
 
 // Implementation
 public:
-	bool IsBlocked(int direction);
+	bool IsBlocked(ToonDirection direction);
 	bool IsMouseOver();//Rick
 	bool IsStartingUp(); //Rick 2022
 	bool CheckFullyEnteredScreen();//Rick 2021

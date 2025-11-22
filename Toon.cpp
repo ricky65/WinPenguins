@@ -531,32 +531,32 @@ CToon CToon::CreateStarterPenguin(bool largePenguin)
 
 
 
-bool CToon::IsBlocked(int direction)
+bool CToon::IsBlocked(ToonDirection direction)
 {	
 	RECT rt;
 
 	switch (direction) {
-	case TOON_LEFT:
+	case ToonDirection::TOON_LEFT:
 		if (m_x <= 0)
 			return true;
 		GetRect(rt, CMainWnd::winPenguinsWindowRect.left + m_x - 1, CMainWnd::winPenguinsWindowRect.top + m_y);
 		break;
-	case TOON_RIGHT:
+	case ToonDirection::TOON_RIGHT:
 		if (m_x + penguin_data[m_bmpIndex].width >= CMainWnd::winPenguinsWindowRect.right)
 			return true;
 		GetRect(rt, CMainWnd::winPenguinsWindowRect.left + m_x + 1, CMainWnd::winPenguinsWindowRect.top + m_y);
 		break;
-	case TOON_UP:
+	case ToonDirection::TOON_UP:
 		if (m_y <= 0) 
 			return true;
 		GetRect(rt, CMainWnd::winPenguinsWindowRect.left + m_x, CMainWnd::winPenguinsWindowRect.top + m_y - 1);
 		break;
-	case TOON_DOWN: 
+	case ToonDirection::TOON_DOWN:
 		if (m_y + penguin_data[m_bmpIndex].height >= CMainWnd::winPenguinsWindowRect.bottom)
 			return true;
 		GetRect(rt, CMainWnd::winPenguinsWindowRect.left + m_x, CMainWnd::winPenguinsWindowRect.top + m_y + 1);
 		break;
-	case TOON_HERE:
+	case ToonDirection::TOON_HERE:
 		GetRect(rt, CMainWnd::winPenguinsWindowRect.left + m_x, CMainWnd::winPenguinsWindowRect.top + m_y);
 		break;
 	default:

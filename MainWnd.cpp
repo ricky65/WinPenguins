@@ -586,7 +586,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 		for (CToon& toon : m_toonVec)
 		{
 			// Rick 2021: Explode penguin if inside window, or on mouse over (excluding ballooners we pop later)
-			if (toon.IsBlocked(TOON_HERE) || (toon.IsMouseOver() && (toon.m_bmpIndex != penguin_BALLOONER && toon.m_bmpIndex != penguin_BALLOONERLARGE))) {
+			if (toon.IsBlocked(ToonDirection::TOON_HERE) || (toon.IsMouseOver() && (toon.m_bmpIndex != penguin_BALLOONER && toon.m_bmpIndex != penguin_BALLOONERLARGE))) {
 				toon.ExplodeAni(m_soundEnabled);
 			}			
 			
@@ -600,7 +600,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 			case penguin_FALLER:
 			case penguin_FALLERLARGE:
 				//Rick 2021: if blocked left or right - climb
-				if (toon.IsBlocked(TOON_LEFT) || toon.IsBlocked(TOON_RIGHT))
+				if (toon.IsBlocked(ToonDirection::TOON_LEFT) || toon.IsBlocked(ToonDirection::TOON_RIGHT))
 				{
 					//Rick 2021 : Don't want to transform into climber if starting and above top of screen
 					if (toon.IsStartingUp()) {
@@ -620,7 +620,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 				}
 				else if (toon_status != ToonStatus::TOON_OK)
 				{
-					if (toon.IsBlocked(TOON_DOWN))
+					if (toon.IsBlocked(ToonDirection::TOON_DOWN))
 					{
 						const int direction = (toon.m_prefd > -1) ? toon.m_prefd : Random::get(0, 1);
 
@@ -703,7 +703,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 
 					break;
 				}
-				if (!toon.IsBlocked(TOON_DOWN)) {
+				if (!toon.IsBlocked(ToonDirection::TOON_DOWN)) {
 					toon.m_prefd = toon.m_directionIndex;
 					toon.SetType(penguin_TUMBLER, penguin_FOREWARD);
 					toon.SetVelocity(0, 6);
@@ -761,11 +761,11 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 			case penguin_WALKER_UPSIDE_DOWNLARGE:
 			case penguin_SANTA_WALKER_UPSIDE_DOWNLARGE:
 				//Rick 2021: If above isn't blocked, climb up
-				if (!toon.IsBlocked(TOON_UP)) {
+				if (!toon.IsBlocked(ToonDirection::TOON_UP)) {
 					//Rick 2021: Make sure we haven't overshot the window
 					//m_directionIndex = 1 when moving left
 					//m_directionIndex = 0 when moving right
-					for (int max = 1; !toon.IsBlocked(TOON_UP) && max < 10; ++max) {
+					for (int max = 1; !toon.IsBlocked(ToonDirection::TOON_UP) && max < 10; ++max) {
 						if (toon.m_directionIndex)
 							++toon.m_x;
 						else
@@ -787,7 +787,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					toon.m_y -= 20;
 				}
 				//Rick 2021: Blocked - Turn around
-				else if (toon.IsBlocked(!toon.m_directionIndex)) {
+				else if (toon.IsBlocked(static_cast<ToonDirection>(!toon.m_directionIndex))) {
 					//Rick 2021: 50/50 between changing direction and climbing down
 					if (Random::get<bool>()) {
 						toon.m_directionIndex = !toon.m_directionIndex;
@@ -810,10 +810,10 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 			case penguin_SANTA_CLIMBER:
 			case penguin_CLIMBERLARGE:
 			case penguin_SANTA_CLIMBERLARGE:
-				if (!toon.IsBlocked(toon.m_directionIndex)) {//walk across window
+				if (!toon.IsBlocked(static_cast<ToonDirection>(toon.m_directionIndex))) {//walk across window
 
 					//Rick 2021: Make sure we haven't overshot the window
-					for (int max = 1; !toon.IsBlocked(toon.m_directionIndex) && max < 10; ++max) {
+					for (int max = 1; !toon.IsBlocked(static_cast<ToonDirection>(toon.m_directionIndex)) && max < 10; ++max) {
 						++toon.m_y;
 					}
 					--toon.m_y;
@@ -832,7 +832,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					toon.SetVelocity(7 * ((2 * toon.m_directionIndex) - 1), 0);
 				}
 				//Rick 2021: Hit the top of a window or top of the screen
-				else if (toon.IsBlocked(TOON_UP)) {
+				else if (toon.IsBlocked(ToonDirection::TOON_UP)) {
 
 					//Rick 2021: 33/33/33 between faller, climb down, walk upside down
 					//Rick 2021: Don't want to walk across top of screen
@@ -876,7 +876,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 			case penguin_SANTA_CLIMBER_DOWN:
 			case penguin_CLIMBER_DOWNLARGE:
 			case penguin_SANTA_CLIMBER_DOWNLARGE:
-				if (toon.IsBlocked(TOON_DOWN)) {//Rick 2021: run across window
+				if (toon.IsBlocked(ToonDirection::TOON_DOWN)) {//Rick 2021: run across window
 
 					CheckSubType(toon);
 
@@ -892,12 +892,12 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					toon.SetVelocity(7 * ((2 * toon.m_directionIndex) - 1), 0);
 				}
 				//Rick 2021: Walk upside down!
-				else if (!toon.IsBlocked(!toon.m_directionIndex)/*&& !toon.IsBlocked(TOON_UP)*/) {
+				else if (!toon.IsBlocked(static_cast<ToonDirection>(!toon.m_directionIndex))/*&& !toon.IsBlocked(TOON_UP)*/) {
 
 					//Rick 2021: Make sure we haven't overshot the window
 					//m_directionIndex = 1 when moving down right side of window
 					//m_directionIndex = 0 when moving down left side of window
-					for (int max = 1; !toon.IsBlocked(!toon.m_directionIndex) && max < 10; ++max) {
+					for (int max = 1; !toon.IsBlocked(static_cast<ToonDirection>(!toon.m_directionIndex)) && max < 10; ++max) {
 						--toon.m_y;
 					}
 					++toon.m_y;
@@ -919,7 +919,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 			case penguin_FLOATER:
 			case penguin_FLOATERLARGE:
 				if (toon_status != ToonStatus::TOON_OK) {
-					if (toon.IsBlocked(TOON_UP)) {
+					if (toon.IsBlocked(ToonDirection::TOON_UP)) {
 						toon.SetType(penguin_FALLER, penguin_FOREWARD);
 						toon.SetVelocity(((toon.m_u > 0) * 2 - 1), 3);
 					}
@@ -934,7 +934,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 			case penguin_READERLARGE:
 				//Rick: check if penguin is reading in mid-air (window has been closed, moved or resized)
 				//although I find it amusing when a penguin is reading in mid-air and tumbles after it closes the book :D
-				if (!toon.IsBlocked(TOON_DOWN)) {
+				if (!toon.IsBlocked(ToonDirection::TOON_DOWN)) {
 					toon.m_prefd = toon.m_directionIndex;
 					toon.SetType(penguin_TUMBLER, penguin_FOREWARD);
 					toon.SetVelocity(0, 6);
@@ -977,8 +977,8 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					break;
 				}
 				if (toon_status != ToonStatus::TOON_OK) {
-					if (toon.IsBlocked(TOON_DOWN)) {
-						//Rick: compensate for height of balllooner bmp being taller							
+					if (toon.IsBlocked(ToonDirection::TOON_DOWN)) {
+						//Rick: compensate for height of ballooner bmp being taller							
 						if (!m_largePenguinsEnabled) {
 							toon.m_y += 30;//small penguins (62 - 32 = 30)
 						}
@@ -1006,7 +1006,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 						}
 
 						if (!m_largePenguinsEnabled) {
-							if (toon.IsBlocked(TOON_RIGHT))
+							if (toon.IsBlocked(ToonDirection::TOON_RIGHT))
 								toon.m_x -= 2;//Rick 2021: compensate on right side for different width of ballooner bmp - unnecessary for large penguins
 						}
 						CheckSubType(toon);
@@ -1024,7 +1024,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 			case penguin_SKATEBOARDER:
 			case penguin_SKATEBOARDERLARGE:
 				//Rick 2021: Change direction if we hit an obstacle to the right or left
-				if (toon.IsBlocked(toon.m_directionIndex))
+				if (toon.IsBlocked(static_cast<ToonDirection>(toon.m_directionIndex)))
 				{
 					/* Blocked!  We can turn around, fly or climb */
 
@@ -1040,13 +1040,13 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 						toon.SetVelocity(0, -6);
 						break;
 					case 3://change direction and run
-						if (toon.IsBlocked(TOON_DOWN))
+						if (toon.IsBlocked(ToonDirection::TOON_DOWN))
 						{
 							//Rick: compensate for small penguins as skateboarder is 30x30 whereas walker is 32x32
 							if (!m_largePenguinsEnabled) {
-								if (toon.m_directionIndex == TOON_LEFT)
+								if (toon.m_directionIndex == std::to_underlying(ToonDirection::TOON_LEFT))
 									toon.m_x += 2;
-								else if (toon.m_directionIndex == TOON_RIGHT)
+								else if (toon.m_directionIndex == std::to_underlying(ToonDirection::TOON_RIGHT))
 									toon.m_x -= 2;
 
 								toon.m_y -= 2;
@@ -1066,9 +1066,9 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					case 4://float off								
 						//Rick: compensate for small penguins as skateboarder is 30x30 whereas floater is 32x32
 						if (!m_largePenguinsEnabled) {
-							if (toon.m_directionIndex == TOON_LEFT)
+							if (toon.m_directionIndex == std::to_underlying(ToonDirection::TOON_LEFT))
 								toon.m_x += 2;
-							else if (toon.m_directionIndex == TOON_RIGHT)
+							else if (toon.m_directionIndex == std::to_underlying(ToonDirection::TOON_RIGHT))
 								toon.m_x -= 2;
 
 							toon.m_y -= 2;
@@ -1091,7 +1091,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					}
 				}
 				//allow for skateboard to glide down off windows
-				else if (!toon.IsBlocked(TOON_DOWN)) {
+				else if (!toon.IsBlocked(ToonDirection::TOON_DOWN)) {
 					toon.SetVelocity(7 /*<< change to adjust speed of skateboarder*/ * ((2 * toon.m_directionIndex) - 1), 5);
 				}
 				//landed using the skateboard, carry on in the direction we were gliding down with
@@ -1104,7 +1104,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 #ifdef WP_CONSOLE
 					ToConsole(L"LEFT or \"A\" key down");
 #endif						
-					toon.m_directionIndex = TOON_LEFT;
+					toon.m_directionIndex = std::to_underlying(ToonDirection::TOON_LEFT);
 					toon.SetVelocity(-6, 0);
 				}
 				//right
@@ -1112,7 +1112,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 #ifdef WP_CONSOLE
 					ToConsole(L"RIGHT or \"D\" key down");
 #endif	
-					toon.m_directionIndex = TOON_RIGHT;
+					toon.m_directionIndex = std::to_underlying(ToonDirection::TOON_RIGHT);
 					toon.SetVelocity(6, 0);
 				}
 				break;
@@ -1120,7 +1120,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 			case penguin_SKATEBOARDER_UPSIDE_DOWNLARGE:
 			{
 				//Rick 2021: If obstacle, stay on the skateboard and turn around
-				if (toon.IsBlocked(!toon.m_directionIndex)) {
+				if (toon.IsBlocked(static_cast<ToonDirection>(!toon.m_directionIndex))) {
 					//Rick 2021: 50/50 between changing direction and climbing down
 					if (Random::get<bool>()) {
 						toon.m_directionIndex = !toon.m_directionIndex;//change direction
@@ -1132,11 +1132,11 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 						toon.SetVelocity(0, toon.m_directionIndex ? -toon.m_u : toon.m_u);
 					}
 				}
-				else if (!toon.IsBlocked(TOON_UP)) {
+				else if (!toon.IsBlocked(ToonDirection::TOON_UP)) {
 					//Rick 2021: Make sure we haven't overshot the window
 					//m_directionIndex = 1 when moving left
 					//m_directionIndex = 0 when moving right
-					for (int max = 1; !toon.IsBlocked(TOON_UP) && max < 10; ++max) {
+					for (int max = 1; !toon.IsBlocked(ToonDirection::TOON_UP) && max < 10; ++max) {
 						if (toon.m_directionIndex)
 							++toon.m_x;
 						else
@@ -1159,7 +1159,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 #ifdef WP_CONSOLE
 					ToConsole(L"LEFT or \"A\" key down");
 #endif						
-					toon.m_directionIndex = TOON_RIGHT;
+					toon.m_directionIndex = std::to_underlying(ToonDirection::TOON_RIGHT);
 					toon.SetVelocity(-6, 0);
 				}
 				//right
@@ -1167,7 +1167,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 #ifdef WP_CONSOLE
 					ToConsole(L"RIGHT or \"D\" key down");
 #endif	
-					toon.m_directionIndex = TOON_LEFT;
+					toon.m_directionIndex = std::to_underlying(ToonDirection::TOON_LEFT);
 					toon.SetVelocity(6, 0);
 				}
 			}
@@ -1175,10 +1175,10 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 			case penguin_SKATEBOARDER_CLIMBER:
 			case penguin_SKATEBOARDER_CLIMBERLARGE:
 				//skateboard across window	
-				if (!toon.IsBlocked(toon.m_directionIndex)) {
+				if (!toon.IsBlocked(static_cast<ToonDirection>(toon.m_directionIndex))) {
 
 					//Rick 2021: Make sure we haven't overshot the window
-					for (int max = 1; !toon.IsBlocked(toon.m_directionIndex) && max < 10; ++max) {
+					for (int max = 1; !toon.IsBlocked(static_cast<ToonDirection>(toon.m_directionIndex)) && max < 10; ++max) {
 						++toon.m_y;
 					}
 					--toon.m_y;
@@ -1188,7 +1188,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					toon.SetPosition(toon.m_x + (2 * toon.m_directionIndex), toon.m_y);
 					toon.m_prefd = toon.m_directionIndex;
 				}
-				else if (toon.IsBlocked(TOON_UP)) {
+				else if (toon.IsBlocked(ToonDirection::TOON_UP)) {
 					//Rick 2021: 33/33/33 between faller, skateboard back down, skateboard upside down
 					//Rick 2021: Don't want to skateboard across top of screen
 					const int nextType = Random::get(1, toon.m_y != CMainWnd::winPenguinsWindowRect.top ? 3 : 2);
@@ -1226,14 +1226,14 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 			case penguin_SKATEBOARDER_CLIMBER_DOWN:
 			case penguin_SKATEBOARDER_CLIMBER_DOWNLARGE:
 				//Rick 2021: Skateboard upside down!
-				if (!toon.IsBlocked(!toon.m_directionIndex)/*&& !toon.IsBlocked(TOON_UP)*/) {
+				if (!toon.IsBlocked(static_cast<ToonDirection>(!toon.m_directionIndex))/*&& !toon.IsBlocked(TOON_UP)*/) {
 					//toon.SetVelocity(7 /*<< change to adjust speed of skateboarder*/ * ((2 * !toon.m_directionIndex) - 1), 0);
 					// toon.m_y -= 3;
 					//toon.m_x += 8 - toon.m_directionIndex * 16;// m_x +/- 9
 					//toon.SetPosition(toon.m_x + (2 * toon.m_directionIndex), toon.m_y);
 
 					//Rick 2021: Make sure we haven't overshot the window
-					for (int max = 1; !toon.IsBlocked(!toon.m_directionIndex) && max < 10; ++max) {
+					for (int max = 1; !toon.IsBlocked(static_cast<ToonDirection>(!toon.m_directionIndex)) && max < 10; ++max) {
 						--toon.m_y;
 					}
 					++toon.m_y;
@@ -1246,7 +1246,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					break;
 				}
 				//across window	
-				else if (toon.IsBlocked(TOON_DOWN)) {
+				else if (toon.IsBlocked(ToonDirection::TOON_DOWN)) {
 					toon.SetVelocity(7 /*<< change to adjust speed of skateboarder*/ * ((2 * toon.m_directionIndex) - 1), 0);
 					toon.SetPosition(toon.m_x + (2 * toon.m_directionIndex), toon.m_y);
 					toon.SetType(penguin_SKATEBOARDER);
@@ -1267,7 +1267,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 			case penguin_SUPER:
 			case penguin_SUPERLARGE:
 				if (toon_status != ToonStatus::TOON_OK) {
-					if (toon.IsBlocked(TOON_UP)) {
+					if (toon.IsBlocked(ToonDirection::TOON_UP)) {
 						toon.SetType(penguin_FALLER, penguin_FOREWARD);
 						toon.SetVelocity(((toon.m_u > 0) * 2 - 1), 3);
 					}
