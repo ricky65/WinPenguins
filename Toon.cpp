@@ -515,7 +515,7 @@ CToon CToon::CreateStarterPenguin(bool largePenguin)
 		const int y = CMainWnd::winPenguinsWindowRect.top - penguin_data[fallerTypeBMPIndex].height - faller_offscreen_offset;
 		const int u = Random::get(-3, 3); 
 		constexpr int v = 3;
-		return { x, y, u, v, fallerTypeBMPIndex, penguin_FOREWARD, largePenguin };
+		return { x, y, u, v, fallerTypeBMPIndex, std::to_underlying(ToonDirection::TOON_FOREWARD), largePenguin };
 	}
 	else
 	{
@@ -524,7 +524,7 @@ CToon CToon::CreateStarterPenguin(bool largePenguin)
 		const int y = CMainWnd::winPenguinsWindowRect.top - penguin_data[balloonerTypeBMPIndex].height - ballooner_offscreen_offset;
 		const int u = Random::get(-2, 2);
 		constexpr int v = 2;
-		return  { x, y, u, v, balloonerTypeBMPIndex, penguin_FOREWARD, largePenguin };
+		return  { x, y, u, v, balloonerTypeBMPIndex, std::to_underlying(ToonDirection::TOON_FOREWARD), largePenguin };
 	}
 
 }

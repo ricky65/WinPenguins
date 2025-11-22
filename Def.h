@@ -30,11 +30,6 @@
 #ifndef _DEF_H_INCLUDED_
 #define _DEF_H_INCLUDED_
 
-#define penguin_FOREWARD	0
-#define penguin_LEFTRIGHT	1
-#define penguin_LEFT		0
-#define penguin_RIGHT		1
-
 #define penguin_WALKER							0
 #define penguin_WALKER_UPSIDE_DOWN				1
 #define penguin_FALLER							2
