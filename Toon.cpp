@@ -317,16 +317,15 @@ void CToon::SetType(int type)
 	m_bmpIndex = type;
 }
 
-void CToon::SetType(int type, int direction)
+void CToon::SetDirection(ToonDirection direction)
 {
-	//Rick 2021: Large penguin bitmap offsets are +22 
-	if (m_isLarge)
-		type += 22;
-
-	m_bmpIndex = type;
-	m_directionIndex = direction;
+	m_directionIndex = std::to_underlying(direction);
 }
 
+void CToon::SetDirection(int direction)
+{
+	m_directionIndex = direction;
+}
 
 void CToon::SetPosition(int x, int y)
 {

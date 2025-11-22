@@ -610,12 +610,12 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					CheckSubType(toon);
 
 					if (toon.GetSubType() == ToonSubType::TST_NORMAL_PENGUIN) {
-						toon.SetType(penguin_CLIMBER, toon.m_u > 0);
+						toon.SetType(penguin_CLIMBER);
 					}
 					else if (toon.GetSubType() == ToonSubType::TST_SANTA_PENGUIN) {
-						toon.SetType(penguin_SANTA_CLIMBER, toon.m_u > 0);
+						toon.SetType(penguin_SANTA_CLIMBER);						
 					}
-
+					toon.SetDirection(toon.m_u > 0);
 					toon.SetVelocity(0, -4);
 				}
 				else if (toon_status != ToonStatus::TOON_OK)
@@ -630,18 +630,19 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 						if (Random::get<bool>())
 						{//walker
 							if (toon.GetSubType() == ToonSubType::TST_NORMAL_PENGUIN) {
-								toon.SetType(penguin_WALKER, direction);
+								toon.SetType(penguin_WALKER);								
 							}
 							else if (toon.GetSubType() == ToonSubType::TST_SANTA_PENGUIN) {
-								toon.SetType(penguin_SANTA_WALKER, direction);
+								toon.SetType(penguin_SANTA_WALKER);
 							}
-
+							toon.SetDirection(direction);
 							toon.SetVelocity(4 * ((2 * direction) - 1), 0);
 							toon.m_prefd = -1;
 						}
 						else//skateboarder
 						{
-							toon.SetType(penguin_SKATEBOARDER, direction);
+							toon.SetType(penguin_SKATEBOARDER);
+							toon.SetDirection(direction);
 							toon.SetVelocity(7 /*<< change to adjust speed of skateboarder*/ * ((2 * direction) - 1), 0);
 							toon.m_prefd = -1;
 							if (!m_largePenguinsEnabled)
@@ -668,18 +669,19 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					if (Random::get<bool>())
 					{//walker
 						if (toon.GetSubType() == ToonSubType::TST_NORMAL_PENGUIN) {
-							toon.SetType(penguin_WALKER, direction);
+							toon.SetType(penguin_WALKER);
 						}
 						else if (toon.GetSubType() == ToonSubType::TST_SANTA_PENGUIN) {
-							toon.SetType(penguin_SANTA_WALKER, direction);
+							toon.SetType(penguin_SANTA_WALKER);
 						}
-
+						toon.SetDirection(direction);
 						toon.SetVelocity(4 * ((2 * direction) - 1), 0);
 						toon.m_prefd = -1;
 					}
 					else//skateboarder
 					{
-						toon.SetType(penguin_SKATEBOARDER, direction);
+						toon.SetType(penguin_SKATEBOARDER);
+						toon.SetDirection(direction);
 						toon.SetVelocity(7 /*<< change to adjust speed of skateboarder*/ * ((2 * direction) - 1), 0);
 						toon.m_prefd = -1;
 						if (!m_largePenguinsEnabled)
@@ -695,7 +697,8 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 				if (Random::get<bool>(0.01)) {
 					//start reading
 					toon.m_prefd = toon.m_directionIndex;
-					toon.SetType(penguin_READER, std::to_underlying(ToonDirection::TOON_FOREWARD));
+					toon.SetType(penguin_READER);
+					toon.SetDirection(ToonDirection::TOON_FOREWARD);
 					toon.SetVelocity(0, 0);
 					//Rick 2021: compensate for width and height of reader being 2px less than walker - not necessary with large penguin
 					if (!m_largePenguinsEnabled)
@@ -705,7 +708,8 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 				}
 				if (!toon.IsBlocked(ToonDirection::TOON_DOWN)) {
 					toon.m_prefd = toon.m_directionIndex;
-					toon.SetType(penguin_TUMBLER, std::to_underlying(ToonDirection::TOON_FOREWARD));
+					toon.SetType(penguin_TUMBLER);
+					toon.SetDirection(ToonDirection::TOON_FOREWARD);
 					toon.SetVelocity(0, 6);
 					toon.m_tumbleStartY = toon.m_y;
 				}
@@ -719,7 +723,8 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					switch (transition) {
 					case 1:
 					case 2:
-						toon.SetType(penguin_FLOATER, std::to_underlying(ToonDirection::TOON_FOREWARD));
+						toon.SetType(penguin_FLOATER);
+						toon.SetDirection(ToonDirection::TOON_FOREWARD);
 						toon.SetVelocity(Random::get(0, 4 * -toon.m_u / 4), -3);
 						break;
 					case 3:
@@ -736,7 +741,8 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 						toon.SetVelocity(0, -4);
 						break;
 					case 5:
-						toon.SetType(penguin_SUPER, !toon.m_directionIndex);
+						toon.SetType(penguin_SUPER);
+						toon.SetDirection(!toon.m_directionIndex);
 						toon.SetVelocity(Random::get(0, 9 * -toon.m_u / 4), -8);
 						break;
 					case 6:
@@ -746,11 +752,12 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 						CheckSubType(toon);
 
 						if (toon.GetSubType() == ToonSubType::TST_NORMAL_PENGUIN) {
-							toon.SetType(penguin_WALKER, !toon.m_directionIndex);
+							toon.SetType(penguin_WALKER);
 						}
 						else if (toon.GetSubType() == ToonSubType::TST_SANTA_PENGUIN) {
-							toon.SetType(penguin_SANTA_WALKER, !toon.m_directionIndex);
+							toon.SetType(penguin_SANTA_WALKER);
 						}
+						toon.SetDirection(!toon.m_directionIndex);
 						toon.SetVelocity(-toon.m_u, 0);
 						break;
 					}
@@ -843,18 +850,20 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					case 1:
 						//Rick 2021: Faller					
 						toon.SetVelocity(1 - toon.m_directionIndex * 2, 3);//Rick: m_u is +1/-1
-						toon.SetType(penguin_FALLER, std::to_underlying(ToonDirection::TOON_FOREWARD));
+						toon.SetType(penguin_FALLER);
+						toon.SetDirection(ToonDirection::TOON_FOREWARD);
 						break;
 
 					case 2:
 						//Rick 2021: Climb back down
 						CheckSubType(toon);
 						if (toon.GetSubType() == ToonSubType::TST_NORMAL_PENGUIN) {
-							toon.SetType(penguin_CLIMBER_DOWN, !toon.m_directionIndex);
+							toon.SetType(penguin_CLIMBER_DOWN);
 						}
 						else if (toon.GetSubType() == ToonSubType::TST_SANTA_PENGUIN) {
-							toon.SetType(penguin_SANTA_CLIMBER_DOWN, !toon.m_directionIndex);
+							toon.SetType(penguin_SANTA_CLIMBER_DOWN);
 						}
+						toon.SetDirection(!toon.m_directionIndex);
 						toon.SetVelocity(0, -toon.m_v);//reverse direction
 						break;
 					case 3:
@@ -920,7 +929,8 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 			case penguin_FLOATERLARGE:
 				if (toon_status != ToonStatus::TOON_OK) {
 					if (toon.IsBlocked(ToonDirection::TOON_UP)) {
-						toon.SetType(penguin_FALLER, std::to_underlying(ToonDirection::TOON_FOREWARD));
+						toon.SetType(penguin_FALLER);
+						toon.SetDirection(ToonDirection::TOON_FOREWARD);
 						toon.SetVelocity(((toon.m_u > 0) * 2 - 1), 3);
 					}
 					else {
@@ -936,7 +946,8 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 				//although I find it amusing when a penguin is reading in mid-air and tumbles after it closes the book :D
 				if (!toon.IsBlocked(ToonDirection::TOON_DOWN)) {
 					toon.m_prefd = toon.m_directionIndex;
-					toon.SetType(penguin_TUMBLER, std::to_underlying(ToonDirection::TOON_FOREWARD));
+					toon.SetType(penguin_TUMBLER);
+					toon.SetDirection(ToonDirection::TOON_FOREWARD);
 					toon.SetVelocity(0, 6);
 					toon.m_tumbleStartY = toon.m_y;
 				}
@@ -947,11 +958,12 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					CheckSubType(toon);
 
 					if (toon.GetSubType() == ToonSubType::TST_NORMAL_PENGUIN) {
-						toon.SetType(penguin_WALKER, direction);
+						toon.SetType(penguin_WALKER);
 					}
 					else if (toon.GetSubType() == ToonSubType::TST_SANTA_PENGUIN) {
-						toon.SetType(penguin_SANTA_WALKER, direction);
+						toon.SetType(penguin_SANTA_WALKER);
 					}
+					toon.SetDirection(direction);
 					//Rick 2021: compensate for width and height of reader being 2px less than walker - not necessary with large penguin	
 					if (!m_largePenguinsEnabled) {
 						toon.SetPosition(toon.m_x - 1, toon.m_y - 2);
@@ -968,7 +980,8 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					if (m_soundEnabled) {
 						toon.PopSound();
 					}
-					toon.SetType(penguin_TUMBLER, std::to_underlying(ToonDirection::TOON_FOREWARD));
+					toon.SetType(penguin_TUMBLER);
+					toon.SetDirection(ToonDirection::TOON_FOREWARD);
 					const int balloonerPopNewY = (!m_largePenguinsEnabled) ? toon.m_y + 45 : toon.m_y + 70;
 					//const int balloonerPopNewY = (!m_largePenguinsEnabled) ? toon.m_y + 60 : toon.m_y + 90;//Rick 2021 Old offset when popped
 					toon.SetPosition(toon.m_x, balloonerPopNewY);
@@ -990,11 +1003,12 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 						CheckSubType(toon);
 
 						if (toon.GetSubType() == ToonSubType::TST_NORMAL_PENGUIN) {
-							toon.SetType(penguin_WALKER, direction);
+							toon.SetType(penguin_WALKER);
 						}
 						else if (toon.GetSubType() == ToonSubType::TST_SANTA_PENGUIN) {
-							toon.SetType(penguin_SANTA_WALKER, direction);
+							toon.SetType(penguin_SANTA_WALKER);
 						}
+						toon.SetDirection(direction);
 						toon.SetVelocity(4 * ((2 * direction) - 1), 0);
 						toon.m_prefd = -1;
 					}
@@ -1012,11 +1026,12 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 						CheckSubType(toon);
 
 						if (toon.GetSubType() == ToonSubType::TST_NORMAL_PENGUIN) {
-							toon.SetType(penguin_CLIMBER, toon.m_u > 0);
+							toon.SetType(penguin_CLIMBER);
 						}
 						else if (toon.GetSubType() == ToonSubType::TST_SANTA_PENGUIN) {
-							toon.SetType(penguin_SANTA_CLIMBER, toon.m_u > 0);
+							toon.SetType(penguin_SANTA_CLIMBER);
 						}
+						toon.SetDirection(toon.m_u > 0);
 						toon.SetVelocity(0, -4);
 					}
 				}
@@ -1055,11 +1070,12 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 							CheckSubType(toon);
 
 							if (toon.GetSubType() == ToonSubType::TST_NORMAL_PENGUIN) {
-								toon.SetType(penguin_WALKER, !toon.m_directionIndex);
+								toon.SetType(penguin_WALKER);
 							}
 							else if (toon.GetSubType() == ToonSubType::TST_SANTA_PENGUIN) {
-								toon.SetType(penguin_SANTA_WALKER, !toon.m_directionIndex);
+								toon.SetType(penguin_SANTA_WALKER);
 							}
+							toon.SetDirection(!toon.m_directionIndex);
 							toon.SetVelocity(-toon.m_u, 0);
 						}
 						break;
@@ -1074,11 +1090,13 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 							toon.m_y -= 2;
 						}
 
-						toon.SetType(penguin_FLOATER, std::to_underlying(ToonDirection::TOON_FOREWARD));
+						toon.SetType(penguin_FLOATER);
+						toon.SetDirection(ToonDirection::TOON_FOREWARD);
 						toon.SetVelocity(Random::get(0, 4 * -toon.m_u / 7), -3);
 						break;
 					case 5:
-						toon.SetType(penguin_SUPER, !toon.m_directionIndex);
+						toon.SetType(penguin_SUPER);
+						toon.SetDirection(!toon.m_directionIndex);
 						toon.SetVelocity(Random::get(0, 9 * -toon.m_u / 7), -8);
 						break;
 					case 6:
@@ -1198,11 +1216,13 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					case 1:
 						//Rick 2021: Faller					
 						toon.SetVelocity(2 - toon.m_directionIndex * 4, 3);//Rick: m_u is +2/-2
-						toon.SetType(penguin_FALLER, std::to_underlying(ToonDirection::TOON_FOREWARD));
+						toon.SetType(penguin_FALLER);
+						toon.SetDirection(ToonDirection::TOON_FOREWARD);
 						break;
 					case 2:
 						//Rick 2021: Skateboard back down
-						toon.SetType(penguin_SKATEBOARDER_CLIMBER_DOWN, !toon.m_directionIndex);
+						toon.SetType(penguin_SKATEBOARDER_CLIMBER_DOWN);
+						toon.SetDirection(!toon.m_directionIndex);
 						toon.SetVelocity(0, -toon.m_v);//reverse direction
 						break;
 					case 3:
@@ -1219,7 +1239,8 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					ToConsole(L"DOWN or \"S\" key down");
 #endif						
 					//Rick 2021: Skateboard back down
-					toon.SetType(penguin_SKATEBOARDER_CLIMBER_DOWN, !toon.m_directionIndex);
+					toon.SetType(penguin_SKATEBOARDER_CLIMBER_DOWN);
+					toon.SetDirection(!toon.m_directionIndex);
 					toon.SetVelocity(0, -toon.m_v);//reverse direction
 				}
 				break;
@@ -1259,7 +1280,8 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					ToConsole(L"UP or \"W\" key down");
 #endif						
 					//Rick 2021: Skateboard back down
-					toon.SetType(penguin_SKATEBOARDER_CLIMBER, !toon.m_directionIndex);
+					toon.SetType(penguin_SKATEBOARDER_CLIMBER);
+					toon.SetDirection(!toon.m_directionIndex);
 					toon.SetVelocity(0, -toon.m_v);//reverse direction
 				}
 
@@ -1268,7 +1290,8 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 			case penguin_SUPERLARGE:
 				if (toon_status != ToonStatus::TOON_OK) {
 					if (toon.IsBlocked(ToonDirection::TOON_UP)) {
-						toon.SetType(penguin_FALLER, std::to_underlying(ToonDirection::TOON_FOREWARD));
+						toon.SetType(penguin_FALLER);
+						toon.SetDirection(ToonDirection::TOON_FOREWARD);
 						toon.SetVelocity(((toon.m_u > 0) * 2 - 1), 3);
 					}
 					else {

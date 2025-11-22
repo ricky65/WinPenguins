@@ -118,7 +118,8 @@ public:
 	void SetVelocity(int u, int v);	
 	void SetPosition(int x, int y);
 	void SetType(int type);
-	void SetType(int type, int direction);
+	void SetDirection(ToonDirection direction);
+	void SetDirection(int direction);
 
 	void ChangeSize();
 	void MakeSmall();
