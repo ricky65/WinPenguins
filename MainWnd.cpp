@@ -48,19 +48,14 @@ void NewLineToConsole()
 }
 
 //Rick: Write string to console (WriteConsoleW wrapper)
-void ToConsole(const wchar_t* str)
+void ToConsole(std::wstring_view sv)
 {
-	DWORD numCharsWritten = 0;
-	const int strLen = lstrlenW(str);
-	WriteConsoleW(Console, str, strLen, &numCharsWritten, nullptr);
-	NewLineToConsole();
-}
+	if (sv.empty()) 
+		return;
 
-//Rick: Write string to console (WriteConsoleW wrapper)
-void ToConsole(const std::wstring& str)
-{
-	DWORD numCharsWritten = 0;
-	WriteConsoleW(Console, str.c_str(), static_cast<DWORD>(str.length()), &numCharsWritten, nullptr);
+	DWORD written = 0;
+	// Safe: sv.size() is size_t, explicit cast to DWORD, no sign issues
+	WriteConsoleW(Console, sv.data(), static_cast<DWORD>(sv.size()), &written, nullptr);
 	NewLineToConsole();
 }
 

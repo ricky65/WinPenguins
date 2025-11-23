@@ -55,20 +55,13 @@ enum TimerEvent : UINT_PTR {
 static HANDLE Console = nullptr;
 
 void NewLineToConsole();
-
-void ToConsole(const wchar_t* str);
-void ToConsole(const std::wstring& str);
+void ToConsole(std::wstring_view sv);
 
 //Rick: Write formatted string to console (wrapper around std::format and WriteConsoleW)
 template <typename... Args >
 void ToConsole(const std::wstring_view formatStr, const Args&... args)
 {
-	const std::wstring strBuffer = std::vformat(formatStr, std::make_wformat_args(args...));
-
-	DWORD numCharsWritten = 0;
-	WriteConsoleW(Console, strBuffer.c_str(), static_cast<DWORD>(strBuffer.length()), &numCharsWritten, nullptr);
-
-	NewLineToConsole();
+	ToConsole(std::vformat(formatStr, std::make_wformat_args(args...)));
 }
 
 bool LoadConsole();
