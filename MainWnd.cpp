@@ -798,7 +798,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 				else if (toon.IsBlocked(static_cast<ToonDirection>(!toon.m_directionIndex))) {
 					//Rick 2021: 50/50 between changing direction and climbing down
 					if (Random::get<bool>()) {
-						toon.m_directionIndex = !toon.m_directionIndex;
+						toon.SetDirection(!toon.m_directionIndex);
 						toon.SetVelocity(-toon.m_u, 0);
 					}
 					else {
@@ -1103,8 +1103,8 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					case 7:
 					case 8:
 						//stay on the skateboard and turn around									
-						toon.m_directionIndex = !toon.m_directionIndex;//change direction
-						toon.SetVelocity(-toon.m_u, 0);//switch to the oppositve left or right speed
+						toon.SetDirection(!toon.m_directionIndex);
+						toon.SetVelocity(-toon.m_u, 0);//switch to the opposite left or right speed
 						break;
 					}
 				}
@@ -1121,8 +1121,8 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 				if (GetAsyncKeyState(VK_LEFT) || GetAsyncKeyState('A')) {
 #ifdef WP_CONSOLE
 					ToConsole(L"LEFT or \"A\" key down");
-#endif						
-					toon.m_directionIndex = std::to_underlying(ToonDirection::TOON_LEFT);
+#endif				
+					toon.SetDirection(ToonDirection::TOON_LEFT);
 					toon.SetVelocity(-6, 0);
 				}
 				//right
@@ -1130,7 +1130,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 #ifdef WP_CONSOLE
 					ToConsole(L"RIGHT or \"D\" key down");
 #endif	
-					toon.m_directionIndex = std::to_underlying(ToonDirection::TOON_RIGHT);
+					toon.SetDirection(ToonDirection::TOON_RIGHT);
 					toon.SetVelocity(6, 0);
 				}
 				break;
@@ -1141,7 +1141,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 				if (toon.IsBlocked(static_cast<ToonDirection>(!toon.m_directionIndex))) {
 					//Rick 2021: 50/50 between changing direction and climbing down
 					if (Random::get<bool>()) {
-						toon.m_directionIndex = !toon.m_directionIndex;//change direction
+						toon.SetDirection(!toon.m_directionIndex);//change direction
 						toon.SetVelocity(-toon.m_u, 0);//switch to the oppositve left or right speed
 					}
 					else {
@@ -1177,7 +1177,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 #ifdef WP_CONSOLE
 					ToConsole(L"LEFT or \"A\" key down");
 #endif						
-					toon.m_directionIndex = std::to_underlying(ToonDirection::TOON_RIGHT);
+					toon.SetDirection(ToonDirection::TOON_RIGHT);
 					toon.SetVelocity(-6, 0);
 				}
 				//right
@@ -1185,7 +1185,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 #ifdef WP_CONSOLE
 					ToConsole(L"RIGHT or \"D\" key down");
 #endif	
-					toon.m_directionIndex = std::to_underlying(ToonDirection::TOON_LEFT);
+					toon.SetDirection(ToonDirection::TOON_LEFT);
 					toon.SetVelocity(6, 0);
 				}
 			}
@@ -1297,7 +1297,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					else {
 						//Rick 2021: Bounce off side of window							
 						toon.m_u = -toon.m_u;
-						toon.m_directionIndex = !toon.m_directionIndex;
+						toon.SetDirection(!toon.m_directionIndex);;
 					}
 				}
 				break;
