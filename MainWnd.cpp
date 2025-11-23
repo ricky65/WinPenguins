@@ -698,7 +698,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					//start reading
 					toon.m_prefd = toon.m_directionIndex;
 					toon.SetType(penguin_READER);
-					toon.SetDirection(ToonDirection::TOON_FOREWARD);
+					toon.SetDirection(ToonDirection::TOON_FORWARD);
 					toon.SetVelocity(0, 0);
 					//Rick 2021: compensate for width and height of reader being 2px less than walker - not necessary with large penguin
 					if (!m_largePenguinsEnabled)
@@ -709,7 +709,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 				if (!toon.IsBlocked(ToonDirection::TOON_DOWN)) {
 					toon.m_prefd = toon.m_directionIndex;
 					toon.SetType(penguin_TUMBLER);
-					toon.SetDirection(ToonDirection::TOON_FOREWARD);
+					toon.SetDirection(ToonDirection::TOON_FORWARD);
 					toon.SetVelocity(0, 6);
 					toon.m_tumbleStartY = toon.m_y;
 				}
@@ -724,7 +724,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 					case 1:
 					case 2:
 						toon.SetType(penguin_FLOATER);
-						toon.SetDirection(ToonDirection::TOON_FOREWARD);
+						toon.SetDirection(ToonDirection::TOON_FORWARD);
 						toon.SetVelocity(Random::get(0, 4 * -toon.m_u / 4), -3);
 						break;
 					case 3:
@@ -851,7 +851,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 						//Rick 2021: Faller					
 						toon.SetVelocity(1 - toon.m_directionIndex * 2, 3);//Rick: m_u is +1/-1
 						toon.SetType(penguin_FALLER);
-						toon.SetDirection(ToonDirection::TOON_FOREWARD);
+						toon.SetDirection(ToonDirection::TOON_FORWARD);
 						break;
 
 					case 2:
@@ -930,7 +930,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 				if (toon_status != ToonStatus::TOON_OK) {
 					if (toon.IsBlocked(ToonDirection::TOON_UP)) {
 						toon.SetType(penguin_FALLER);
-						toon.SetDirection(ToonDirection::TOON_FOREWARD);
+						toon.SetDirection(ToonDirection::TOON_FORWARD);
 						toon.SetVelocity(((toon.m_u > 0) * 2 - 1), 3);
 					}
 					else {
@@ -947,7 +947,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 				if (!toon.IsBlocked(ToonDirection::TOON_DOWN)) {
 					toon.m_prefd = toon.m_directionIndex;
 					toon.SetType(penguin_TUMBLER);
-					toon.SetDirection(ToonDirection::TOON_FOREWARD);
+					toon.SetDirection(ToonDirection::TOON_FORWARD);
 					toon.SetVelocity(0, 6);
 					toon.m_tumbleStartY = toon.m_y;
 				}
@@ -981,7 +981,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 						toon.PopSound();
 					}
 					toon.SetType(penguin_TUMBLER);
-					toon.SetDirection(ToonDirection::TOON_FOREWARD);
+					toon.SetDirection(ToonDirection::TOON_FORWARD);
 					const int balloonerPopNewY = (!m_largePenguinsEnabled) ? toon.m_y + 45 : toon.m_y + 70;
 					//const int balloonerPopNewY = (!m_largePenguinsEnabled) ? toon.m_y + 60 : toon.m_y + 90;//Rick 2021 Old offset when popped
 					toon.SetPosition(toon.m_x, balloonerPopNewY);
@@ -1091,7 +1091,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 						}
 
 						toon.SetType(penguin_FLOATER);
-						toon.SetDirection(ToonDirection::TOON_FOREWARD);
+						toon.SetDirection(ToonDirection::TOON_FORWARD);
 						toon.SetVelocity(Random::get(0, 4 * -toon.m_u / 7), -3);
 						break;
 					case 5:
@@ -1217,7 +1217,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 						//Rick 2021: Faller					
 						toon.SetVelocity(2 - toon.m_directionIndex * 4, 3);//Rick: m_u is +2/-2
 						toon.SetType(penguin_FALLER);
-						toon.SetDirection(ToonDirection::TOON_FOREWARD);
+						toon.SetDirection(ToonDirection::TOON_FORWARD);
 						break;
 					case 2:
 						//Rick 2021: Skateboard back down
@@ -1291,7 +1291,7 @@ void CMainWnd::OnTimer(UINT_PTR nIDEvent) //rick - updated so now compiles to x6
 				if (toon_status != ToonStatus::TOON_OK) {
 					if (toon.IsBlocked(ToonDirection::TOON_UP)) {
 						toon.SetType(penguin_FALLER);
-						toon.SetDirection(ToonDirection::TOON_FOREWARD);
+						toon.SetDirection(ToonDirection::TOON_FORWARD);
 						toon.SetVelocity(((toon.m_u > 0) * 2 - 1), 3);
 					}
 					else {

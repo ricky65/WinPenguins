@@ -44,7 +44,7 @@ enum class ToonStatus {
 };
 
 enum class ToonDirection {
-	TOON_FOREWARD = 0,
+	TOON_FORWARD = 0,
 	TOON_LEFT = 0,
 	TOON_RIGHT = 1,
 	TOON_UP = 2,
