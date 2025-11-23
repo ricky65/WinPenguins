@@ -36,6 +36,8 @@
 // Toon.h : header file
 //
 
+#include "Def.h"
+
 // return values from AdvanceToon
 enum class ToonStatus {
 	TOON_OK,
@@ -117,7 +119,7 @@ public:
 	ToonStatus AdvanceToon(/*bool force,*/);
 	void SetVelocity(int u, int v);	
 	void SetPosition(int x, int y);
-	void SetType(int type);
+	void SetType(PenguinType type);
 	void SetDirection(ToonDirection direction);
 	void SetDirection(int direction);
 

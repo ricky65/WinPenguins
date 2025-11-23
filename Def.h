@@ -30,51 +30,53 @@
 #ifndef _DEF_H_INCLUDED_
 #define _DEF_H_INCLUDED_
 
-#define penguin_WALKER							0
-#define penguin_WALKER_UPSIDE_DOWN				1
-#define penguin_FALLER							2
-#define penguin_TUMBLER							3
-#define penguin_FLOATER							4
-#define penguin_CLIMBER							5
-#define penguin_CLIMBER_DOWN					6
-#define penguin_BOMBER							7
-#define penguin_EXPLOSION						8
-#define penguin_SANTA_WALKER					9
-#define penguin_SANTA_WALKER_UPSIDE_DOWN		10
-#define penguin_SANTA_CLIMBER					11
-#define penguin_SANTA_CLIMBER_DOWN				12
-#define penguin_READER							13
-#define penguin_BALLOONER						14
-#define penguin_SKATEBOARDER					15
-#define penguin_SKATEBOARDER_UPSIDE_DOWN		16
-#define penguin_SKATEBOARDER_CLIMBER			17	
-#define penguin_SKATEBOARDER_CLIMBER_DOWN		18	
-#define penguin_SPLAT							19
-#define penguin_EXIT							20
-#define penguin_SUPER							21
-//Rick 2021: Large Penguins
-#define penguin_WALKERLARGE						22
-#define penguin_WALKER_UPSIDE_DOWNLARGE			23
-#define penguin_FALLERLARGE						24
-#define penguin_TUMBLERLARGE					25	
-#define penguin_FLOATERLARGE					26		
-#define penguin_CLIMBERLARGE					27
-#define penguin_CLIMBER_DOWNLARGE				28
-#define penguin_BOMBERLARGE						29
-#define penguin_EXPLOSIONLARGE					30
-#define penguin_SANTA_WALKERLARGE				31
-#define penguin_SANTA_WALKER_UPSIDE_DOWNLARGE	32
-#define penguin_SANTA_CLIMBERLARGE				33
-#define penguin_SANTA_CLIMBER_DOWNLARGE			34
-#define penguin_READERLARGE						35				
-#define penguin_BALLOONERLARGE					36
-#define penguin_SKATEBOARDERLARGE				37
-#define penguin_SKATEBOARDER_UPSIDE_DOWNLARGE	38	
-#define penguin_SKATEBOARDER_CLIMBERLARGE		39
-#define penguin_SKATEBOARDER_CLIMBER_DOWNLARGE	40
-#define penguin_SPLATLARGE						41
-#define penguin_EXITLARGE						42
-#define penguin_SUPERLARGE						43
+enum class PenguinType {
+	WALKER = 0,
+	WALKER_UPSIDE_DOWN = 1,
+	FALLER = 2,
+	TUMBLER = 3,
+	FLOATER = 4,
+	CLIMBER = 5,
+	CLIMBER_DOWN = 6,
+	BOMBER = 7,
+	EXPLOSION = 8,
+	SANTA_WALKER = 9,
+	SANTA_WALKER_UPSIDE_DOWN = 10,
+	SANTA_CLIMBER = 11,
+	SANTA_CLIMBER_DOWN = 12,
+	READER = 13,
+	BALLOONER = 14,
+	SKATEBOARDER = 15,
+	SKATEBOARDER_UPSIDE_DOWN = 16,
+	SKATEBOARDER_CLIMBER = 17,
+	SKATEBOARDER_CLIMBER_DOWN = 18,
+	SPLAT = 19,
+	EXIT = 20,
+	SUPER = 21,
+	//Rick 2021: Large Penguins
+	WALKER_LARGE = 22,
+	WALKER_UPSIDE_DOWN_LARGE = 23,
+	FALLER_LARGE = 24,
+	TUMBLER_LARGE = 25,
+	FLOATER_LARGE = 26,
+	CLIMBER_LARGE = 27,
+	CLIMBER_DOWN_LARGE = 28,
+	BOMBER_LARGE = 29,
+	EXPLOSION_LARGE = 30,
+	SANTA_WALKER_LARGE = 31,
+	SANTA_WALKER_UPSIDE_DOWN_LARGE = 32,
+	SANTA_CLIMBER_LARGE = 33,
+	SANTA_CLIMBER_DOWN_LARGE = 34,
+	READER_LARGE = 35,
+	BALLOONER_LARGE = 36,
+	SKATEBOARDER_LARGE = 37,
+	SKATEBOARDER_UPSIDE_DOWN_LARGE = 38,
+	SKATEBOARDER_CLIMBER_LARGE = 39,
+	SKATEBOARDER_CLIMBER_DOWN_LARGE = 40,
+	SPLAT_LARGE = 41,
+	EXIT_LARGE = 42,
+	SUPER_LARGE = 43
+};
 
 //number of bitmaps
 constexpr int PenguinBitmapCount = 44; //Rick 2021: 22 small bitmaps. 22 large bitmaps.

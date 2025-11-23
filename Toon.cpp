@@ -100,15 +100,15 @@ void CToon::DeleteAni()
 	//	return;
 
 	//Rick 2021: Have walker penguins walking off into the distance (sprite exit.bmp). Have other penguins leave with the bomber animation
-	if (m_bmpIndex == penguin_WALKER)
+	if (m_bmpIndex == std::to_underlying(PenguinType::WALKER))
 	{
 		m_frameIndex = 0;
-		m_bmpIndex = penguin_EXIT;
+		m_bmpIndex = std::to_underlying(PenguinType::EXIT);
 	}
-	else if (m_bmpIndex == penguin_WALKERLARGE)
+	else if (m_bmpIndex == std::to_underlying(PenguinType::WALKER_LARGE))
 	{
 		m_frameIndex = 0;
-		m_bmpIndex = penguin_EXITLARGE;
+		m_bmpIndex = std::to_underlying(PenguinType::EXIT_LARGE);
 
 		//Rick 2021: Offset as Exit is 48x48 rather than 45x45
 		m_x -= 3;
@@ -119,12 +119,12 @@ void CToon::DeleteAni()
 		m_directionIndex = 0;
 		m_frameIndex = 0;
 		if (!m_isLarge) {
-			m_bmpIndex = penguin_BOMBER;
+			m_bmpIndex = std::to_underlying(PenguinType::BOMBER);
 			m_x -= 2;
 			m_y -= 2; //Rick: prevent reading and skateboarding penguins exploding as they are 30x30 instead of 32x32 for penguin_BOMBER, penguin_WALKER and others
 		}
 		else {
-			m_bmpIndex = penguin_BOMBERLARGE;
+			m_bmpIndex = std::to_underlying(PenguinType::BOMBER_LARGE);
 			m_x -= 3;
 			m_y -= 3;//Rick 2021: compensate as bomber large is 48x48 and regular large are 45x45			
 		}
@@ -140,7 +140,7 @@ void CToon::ExplodeAni(bool soundOn)
 
 	m_directionIndex = 0;
 	m_frameIndex = 0;
-	SetType(penguin_EXPLOSION);
+	SetType(PenguinType::EXPLOSION);
 
 	//Rick 2021: offset small
 	if (!m_isLarge) {
@@ -167,7 +167,7 @@ void CToon::SplatAni(bool soundOn)
 	}
 
 	m_frameIndex = 0;
-	SetType(penguin_SPLAT);
+	SetType(PenguinType::SPLAT);
 
 	//Rick 2021 - offset as large splat bmp is 48x48 rather than 45x45
 	if (m_isLarge) {		
@@ -194,17 +194,18 @@ bool CToon::IsActive()
 
 bool CToon::IsDeleteAni()
 {
-	return (m_bmpIndex == penguin_BOMBERLARGE || m_bmpIndex == penguin_BOMBER || m_bmpIndex == penguin_EXITLARGE || m_bmpIndex == penguin_EXIT);
+	return (m_bmpIndex == std::to_underlying(PenguinType::BOMBER_LARGE) || m_bmpIndex == std::to_underlying(PenguinType::BOMBER) ||
+		m_bmpIndex == std::to_underlying(PenguinType::EXIT_LARGE) || m_bmpIndex == std::to_underlying(PenguinType::EXIT));
 }
 
 bool CToon::IsExploding()
 {
-	return (m_bmpIndex == penguin_EXPLOSIONLARGE || m_bmpIndex == penguin_EXPLOSION);
+	return (m_bmpIndex == std::to_underlying(PenguinType::EXPLOSION_LARGE) || m_bmpIndex == std::to_underlying(PenguinType::EXPLOSION));
 }
 
 bool CToon::IsSplat()
 {
-	return (m_bmpIndex == penguin_SPLATLARGE || m_bmpIndex == penguin_SPLAT);
+	return (m_bmpIndex == std::to_underlying(PenguinType::SPLAT_LARGE) || m_bmpIndex == std::to_underlying(PenguinType::SPLAT));
 }
 
 //true if penguin is at end of cycle (exploded or splattered)
@@ -308,13 +309,12 @@ void CToon::PaintWindowOverlay(CDC *dc,  CDC *activeBmpDC) const
 	}
 }
 	 
-void CToon::SetType(int type)
+void CToon::SetType(PenguinType type)
 {
+	m_bmpIndex = std::to_underlying(type);
 	//Rick 2021: Large penguin bitmap offsets are +22 
 	if (m_isLarge)
-		type += 22;
-
-	m_bmpIndex = type;
+		m_bmpIndex += 22;	
 }
 
 void CToon::SetDirection(ToonDirection direction)
@@ -478,10 +478,10 @@ bool CToon::IsMouseOver()
 	GetCursorPos(&pos);
 
 	//Rick 2021: Only pop balloons when mouse is over balloons area of sprite
-	if (m_bmpIndex == penguin_BALLOONER) {	
+	if (m_bmpIndex == std::to_underlying(PenguinType::BALLOONER)) {
 		rt.bottom -= 30; //offset for small penguins	
 	}
-	else if (m_bmpIndex == penguin_BALLOONERLARGE) {
+	else if (m_bmpIndex == std::to_underlying(PenguinType::BALLOONER_LARGE)) {
 		rt.bottom -= 45; //offset for large penguins
 	}
 
@@ -509,7 +509,7 @@ CToon CToon::CreateStarterPenguin(bool largePenguin)
 	//Rick 2021 - randomize initial penguins to either fallers or ballooners with 50/50 probability
 	if (Random::get<bool>())
 	{		
-		const int fallerTypeBMPIndex = largePenguin ? penguin_FALLERLARGE : penguin_FALLER;
+		const int fallerTypeBMPIndex = largePenguin ? std::to_underlying(PenguinType::FALLER_LARGE) : std::to_underlying(PenguinType::FALLER);
 		const int x = Random::get<int>(CMainWnd::winPenguinsWindowRect.left, CMainWnd::winPenguinsWindowRect.right - penguin_data[fallerTypeBMPIndex].width);
 		const int y = CMainWnd::winPenguinsWindowRect.top - penguin_data[fallerTypeBMPIndex].height - faller_offscreen_offset;
 		const int u = Random::get(-3, 3); 
@@ -518,7 +518,7 @@ CToon CToon::CreateStarterPenguin(bool largePenguin)
 	}
 	else
 	{
-		const int balloonerTypeBMPIndex = largePenguin ? penguin_BALLOONERLARGE : penguin_BALLOONER;
+		const int balloonerTypeBMPIndex = largePenguin ? std::to_underlying(PenguinType::BALLOONER_LARGE) : std::to_underlying(PenguinType::BALLOONER);
 		const int x = Random::get<int>(CMainWnd::winPenguinsWindowRect.left, CMainWnd::winPenguinsWindowRect.right - penguin_data[balloonerTypeBMPIndex].width);
 		const int y = CMainWnd::winPenguinsWindowRect.top - penguin_data[balloonerTypeBMPIndex].height - ballooner_offscreen_offset;
 		const int u = Random::get(-2, 2);
