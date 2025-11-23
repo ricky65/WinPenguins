@@ -34,7 +34,7 @@
 #include "Def.h"
 #include <mmsystem.h>
 
-ToonData penguin_data[penguin_BITMAP_COUNT] = {
+ToonData penguin_data[PenguinBitmapCount] = {
    { IDB_WALKER,							IDB_WALKERMSK,							{}, {}, 8, 2, 32, 32, true },
    { IDB_WALKER_UPSIDE_DOWN,				IDB_WALKER_UPSIDE_DOWNMSK,				{}, {}, 8, 2, 32, 32, true },
    { IDB_FALLER,							IDB_FALLERMSK,							{}, {}, 8, 1, 32, 32, true },

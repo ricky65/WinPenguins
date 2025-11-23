@@ -77,7 +77,7 @@
 #define penguin_SUPERLARGE						43
 
 //number of bitmaps
-#define penguin_BITMAP_COUNT					44 //Rick 2021: 22 small bitmaps. 22 large bitmaps.
+constexpr int PenguinBitmapCount = 44; //Rick 2021: 22 small bitmaps. 22 large bitmaps.
 
 struct ToonData {
    DWORD resId;  // resource id
@@ -91,6 +91,6 @@ struct ToonData {
    bool cycle;  // does the animation cycle
 };
 
-extern ToonData penguin_data[penguin_BITMAP_COUNT];
+extern ToonData penguin_data[PenguinBitmapCount];
 
 #endif

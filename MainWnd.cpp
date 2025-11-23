@@ -373,7 +373,7 @@ CMainWnd::CMainWnd()
 	}
 
 	// Load the penguin bitmap resources
-	for (int i = 0; i < penguin_BITMAP_COUNT; ++i) {
+	for (int i = 0; i < PenguinBitmapCount; ++i) {
 		penguin_data[i].bmp.LoadBitmap(MAKEINTRESOURCE(penguin_data[i].resId));
 		penguin_data[i].mskBmp.LoadBitmap(MAKEINTRESOURCE(penguin_data[i].mskResId));
 	}
