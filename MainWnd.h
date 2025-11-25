@@ -52,7 +52,7 @@ enum TimerEvent : UINT_PTR {
 
 
 #ifdef WP_CONSOLE
-static HANDLE Console = nullptr;
+extern HANDLE Console;
 
 void NewLineToConsole();
 void ToConsole(std::wstring_view sv);
@@ -68,10 +68,10 @@ bool LoadConsole();
 #endif // WP_CONSOLE
 
 // Hook events
-static HWINEVENTHOOK LocationChangeHook;
-static HWINEVENTHOOK ShowHideHook;
-static HWINEVENTHOOK CloakedUncloakedHook;
-static bool windowChanged = true;
+extern HWINEVENTHOOK LocationChangeHook;
+extern HWINEVENTHOOK ShowHideHook;
+extern HWINEVENTHOOK CloakedUncloakedHook;
+extern bool windowChanged;
 
 void CALLBACK HandleWindowEvents(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG idObject, LONG idChild, DWORD dwEventThread, DWORD dwmsEventTime);
 void InitializeHooks();

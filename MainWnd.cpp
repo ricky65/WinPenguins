@@ -36,8 +36,13 @@
 
 #pragma comment (lib, "dwmapi.lib")
 
+HWINEVENTHOOK LocationChangeHook = nullptr;
+HWINEVENTHOOK ShowHideHook = nullptr;
+HWINEVENTHOOK CloakedUncloakedHook = nullptr;
+bool windowChanged = true;
 
 #ifdef WP_CONSOLE
+HANDLE Console = nullptr;
 
 void NewLineToConsole()
 {
