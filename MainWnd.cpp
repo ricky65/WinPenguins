@@ -267,6 +267,7 @@ void CMainWnd::FindVisibleWindows()
 {	
 	static const wchar_t taskbarClassName[] = L"Shell_TrayWnd";//Taskbar
 	static const wchar_t programManagerTitle[] = L"Program Manager";
+	static const wchar_t invisibleStartMenuWindowTitle [] = L"Start";
 
 	static const wchar_t NVIDIAGeForceOverlayTitle[] = L"NVIDIA GeForce Overlay";
 	
@@ -298,6 +299,16 @@ void CMainWnd::FindVisibleWindows()
 			continue;
 		}
 
+		//2025: Ignore invisible Start Menu window that takes up the whole screen minus taskbar
+		const bool InvisibleStartMenuWindowFound = _wcsicmp(windowTitleBuf, invisibleStartMenuWindowTitle) == 0;
+
+		if (InvisibleStartMenuWindowFound) {
+#ifdef WP_CONSOLE
+			ToConsole(L"Invisible Start Menu Window Found: (HWND: {})", static_cast<const void*>(currentWindow));
+#endif	// WP_CONSOLE
+			continue;
+		}
+
 		// Rick 2024: Ignore NVIDIA GeForce Overlay
 		const bool GeForceOverlayFound = _wcsicmp(windowTitleBuf, NVIDIAGeForceOverlayTitle) == 0;
 
@@ -306,8 +317,7 @@ void CMainWnd::FindVisibleWindows()
 			ToConsole(L"NVIDIA GeForce Overlay found: (HWND: {})", static_cast<const void*>(currentWindow));
 #endif	// WP_CONSOLE
  			continue;
-		}
-	
+		}	
 		
 		wchar_t classNameBuf[32];
 		GetClassName(currentWindow, classNameBuf, static_cast<int>(std::size(classNameBuf)));
